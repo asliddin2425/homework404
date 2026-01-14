@@ -7,15 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { BaseModel, } from "../../core/base-entity.js";
-import { Entity, Column } from "typeorm";
+import { BaseModel } from "../../core/base-entity.js";
+import { Entity, Column, OneToMany } from "typeorm";
+import { Book } from "./book.entity.js";
 let Author = class Author extends BaseModel {
     name;
+    books;
 };
 __decorate([
     Column({ length: 32 }),
     __metadata("design:type", String)
 ], Author.prototype, "name", void 0);
+__decorate([
+    OneToMany(() => Book, book => book.authors),
+    __metadata("design:type", Array)
+], Author.prototype, "books", void 0);
 Author = __decorate([
     Entity("authors")
 ], Author);

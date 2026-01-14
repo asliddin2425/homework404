@@ -7,11 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
 import { BaseModel } from "../../core/base-entity.js";
 let Level = class Level extends BaseModel {
     title;
     icon;
+    entities;
 };
 __decorate([
     Column({ length: 32 }),
@@ -21,6 +22,10 @@ __decorate([
     Column({ length: 64 }),
     __metadata("design:type", String)
 ], Level.prototype, "icon", void 0);
+__decorate([
+    OneToMany(() => BaseModel, entity => entity.id),
+    __metadata("design:type", Array)
+], Level.prototype, "entities", void 0);
 Level = __decorate([
     Entity("levels")
 ], Level);

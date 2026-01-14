@@ -7,11 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
 import { BaseModel } from "../../core/base-entity.js";
 let Language = class Language extends BaseModel {
     title;
     code;
+    entities;
 };
 __decorate([
     Column({ length: 32 }),
@@ -21,6 +22,10 @@ __decorate([
     Column({ length: 16 }),
     __metadata("design:type", String)
 ], Language.prototype, "code", void 0);
+__decorate([
+    OneToMany(() => BaseModel, entity => entity.id),
+    __metadata("design:type", Array)
+], Language.prototype, "entities", void 0);
 Language = __decorate([
     Entity("languages")
 ], Language);

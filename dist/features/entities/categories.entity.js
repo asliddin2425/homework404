@@ -7,15 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
 import { BaseModel } from "../../core/base-entity.js";
 let Category = class Category extends BaseModel {
     title;
+    entities;
 };
 __decorate([
     Column({ length: 32 }),
     __metadata("design:type", String)
 ], Category.prototype, "title", void 0);
+__decorate([
+    OneToMany(() => BaseModel, entity => entity.id),
+    __metadata("design:type", Array)
+], Category.prototype, "entities", void 0);
 Category = __decorate([
     Entity("categories")
 ], Category);

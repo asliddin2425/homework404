@@ -16,6 +16,7 @@ export class Book extends BaseModel{
     @Column({type: "int"})
     discountPrice: number;
 
+
     @ManyToOne(() => Author, authors =>authors.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "authorId"})
     authors: Author;
