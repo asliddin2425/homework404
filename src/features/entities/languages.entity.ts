@@ -1,4 +1,4 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
 import { BaseModel } from "../../core/base-entity.js";
 
 @Entity("languages")
@@ -10,4 +10,7 @@ export class Language extends BaseModel{
     
     @Column({length: 16})
     code: string;
+
+    @OneToMany(() => BaseModel, entity => entity.id)
+    entities: BaseModel[];
 }
